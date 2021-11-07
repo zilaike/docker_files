@@ -7,8 +7,8 @@ services:
     hostname: es_single
     container_name: es-single
     volumes:
-      - es-single/data:/usr/share/elasticsearch/data
-      - es-single/plugins:/usr/share/elasticsearch/plugins
+      - es-single-data:/usr/share/elasticsearch/data
+      - es-single-plugins:/usr/share/elasticsearch/plugins
 #      - es-single/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -19,5 +19,7 @@ services:
     privileged: true    #环境变量
 
 volumes:
-  es-single:
+  es-single-data:
+    driver: local
+  es-single-plugins:
     driver: local
