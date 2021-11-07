@@ -1,0 +1,19 @@
+version: '2'
+services:
+  strongswan:
+    image: zilaike/strongswan
+    container_name: strongswan_vpn
+    ports:
+      - 500:500/udp
+      - 4500:4500/udp
+    volumes:
+      - /lib/modules:/lib/modules
+      - /etc/localtime:/etc/localtime
+    environment:
+      - VPN_DOMAIN=47.242.143.77
+      - VPN_NETWORK=10.31.0.0/24
+      - LAN_NETWORK=192.168.0.0/16
+      - VPN_P12_PASSWORD=zilaike-A1
+    tmpfs: /run
+    privileged: yes
+    restart: always

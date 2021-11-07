@@ -1,0 +1,1 @@
+stages/4.5.0/templates/play-docker.sh alpine
