@@ -23,3 +23,7 @@ volumes:
     driver: local
   es-single-plugins:
     driver: local
+
+networks:
+  elastic:
+    driver: bridge
