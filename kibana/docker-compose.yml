@@ -1,0 +1,8 @@
+version: '2'
+services:
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.15.1
+    environment:
+      SERVER_NAME: kibana.example.org
+#      ELASTICSEARCH_HOSTS: '["http://es01:9200","http://es02:9200","http://es03:9200"]'
+      ELASTICSEARCH_HOSTS: '["http://tl.hk.com:9200"]'
