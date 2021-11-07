@@ -12,6 +12,6 @@ services:
     networks:
       - elasticsearch_elastic
 networks:
-  elastic:
+  elasticsearch_elastic:
     driver: bridge
     external: true
