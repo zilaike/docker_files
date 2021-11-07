@@ -8,7 +8,7 @@ services:
     container_name: es-single
     volumes:
       - es-single-data:/usr/share/elasticsearch/data
-      - es-single-plugins:/usr/share/elasticsearch/plugins
+      - ./plugins:/usr/share/elasticsearch/plugins
 #      - es-single/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -21,8 +21,6 @@ services:
       - elastic
 volumes:
   es-single-data:
-    driver: local
-  es-single-plugins:
     driver: local
 
 networks:
