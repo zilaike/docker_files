@@ -1,28 +1,23 @@
-version: '2.2'
+version: '3'
+
 services:
-  es01:
+  elasticsearch:
 #    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.1
     image: zilaike/elasticsearch:7.14.1
-    container_name: es_single
-    environment:
-      - discovery.type=single-node
-      - bootstrap.memory_lock=false
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
+    hostname: es_single
+    container_name: es-single
     volumes:
-      - data01:/usr/share/elasticsearch/data
+      - es-single/data:/usr/share/elasticsearch/data
+      - es-single/plugins:/usr/share/elasticsearch/plugins
+#      - es-single/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
     ports:
-      - 9200:9200
-    networks:
-      - elastic
+      - '9200:9200'     #java、集群通信端口
+      - '9300:9300'     #http通信端口
+    privileged: true    #环境变量
 
 volumes:
-  data01:
+  es-single:
     driver: local
-
-networks:
-  elastic:
-    driver: bridge
