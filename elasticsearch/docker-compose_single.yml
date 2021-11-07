@@ -28,3 +28,5 @@ volumes:
 networks:
   elastic:
     driver: bridge
+    external:
+      name: elastic_single_network
