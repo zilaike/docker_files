@@ -20,8 +20,7 @@ services:
     ports:
       - 9200:9200
     networks:
-      elastic:
-        ipv4_address: 172.18.0.2
+      - elastic
   es02:
     #    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.1
     image: zilaike/elasticsearch:7.14.1
@@ -40,8 +39,7 @@ services:
     volumes:
       - data02:/usr/share/elasticsearch/data
     networks:
-      elastic:
-        ipv4_address: 172.18.0.3
+      - elastic
   es03:
     #    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.1
     image: zilaike/elasticsearch:7.14.1
@@ -51,7 +49,7 @@ services:
       - cluster.name=es-docker-cluster
       - discovery.seed_hosts=es01,es02
       - cluster.initial_master_nodes=es01,es02,es03
-      - bootstrap.memory_lock=false
+      - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
       memlock:
@@ -60,8 +58,7 @@ services:
     volumes:
       - data03:/usr/share/elasticsearch/data
     networks:
-      elastic:
-        ipv4_address: 172.18.0.4
+      - elastic
 
 volumes:
   data01:
@@ -74,7 +71,3 @@ volumes:
 networks:
   elastic:
     driver: bridge
-    ipam:
-      config:
-      - subnet: 172.18.0.0/24
-        gateway: 172.18.0.1
