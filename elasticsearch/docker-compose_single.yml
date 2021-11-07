@@ -17,7 +17,8 @@ services:
       - '9200:9200'     #java、集群通信端口
       - '9300:9300'     #http通信端口
     privileged: true    #环境变量
-
+    networks:
+      - elastic
 volumes:
   es-single-data:
     driver: local
