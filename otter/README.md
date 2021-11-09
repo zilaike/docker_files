@@ -1,15 +1,6 @@
-
-#=====================或者自行构建镜像并修改docker-compose.yml ================================
-#构建 自己的镜像
-docker build -t zilaike-canal/otter-server   ./
-#运行以及启动
-docker-compose up -d 
-#测试是否安装成功
-curl -X GET "localhost:9200/_cat/nodes?v=true&pretty"
-
-#=====================安装elasticsearch head插件监控管理 ================================
+ 
 #拉取镜像 
-docker pull zilaike-canal/otter-server
+docker pull canal/otter-all
 #启动otter
 curl -fsSL https://raw.githubusercontent.com/alibaba/otter/master/docker/run.sh | bash 
 
