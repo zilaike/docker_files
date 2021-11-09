@@ -1,9 +1,13 @@
  
 #拉取镜像 
 docker pull canal/otter-all
-#启动otter
-curl -fsSL https://raw.githubusercontent.com/alibaba/otter/master/docker/run.sh | bash 
+#启动otter   不要用主机模式
+#curl -fsSL https://raw.githubusercontent.com/alibaba/otter/master/docker/run.sh | bash 
 
+#--net=bridge
+
+
+bash run.sh
 
 
 注意点：
