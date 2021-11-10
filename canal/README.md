@@ -20,18 +20,18 @@ cd docker && sh build.sh
 # 启动Docker
 docker目录下自带了一个run.sh脚本: https://github.com/alibaba/canal/blob/master/docker/run.sh
 
-sh run.sh 
-Usage:
-  run.sh [CONFIG]
-example:
-  run.sh -e canal.instance.master.address=127.0.0.1:3306 \
-         -e canal.instance.dbUsername=canal \
-         -e canal.instance.dbPassword=canal \
-         -e canal.instance.connectionCharset=UTF-8 \
-         -e canal.instance.tsdb.enable=true \
-         -e canal.instance.gtidon=false \
-         -e canal.instance.filter.regex=.*\\..* 
-实际运行的例子：
+#sh run.sh 
+#Usage:
+#  run.sh [CONFIG]
+#example:
+#  run.sh -e canal.instance.master.address=127.0.0.1:3306 \
+#         -e canal.instance.dbUsername=canal \
+#         -e canal.instance.dbPassword=canal \
+#         -e canal.instance.connectionCharset=UTF-8 \
+#         -e canal.instance.tsdb.enable=true \
+#         -e canal.instance.gtidon=false \
+#         -e canal.instance.filter.regex=.*\\..* 
+#实际运行的例子：
 
 # 下载脚本
 wget https://raw.githubusercontent.com/alibaba/canal/master/docker/run.sh 
