@@ -86,10 +86,10 @@ sh  run_admin.sh -e server.port=8089 \
 
 # 指定外部的mysql作为admin的库
 sh  run_admin.sh -e server.port=8089 \
- -e canal.adminUser=zilaike \
- -e canal.adminPasswd=zilaike \
+ -e canal.adminUser=admin \
+ -e canal.adminPasswd=6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9 \
  -e spring.datasource.address=192.168.33.2:3306 \
- -e spring.datasource.database=canal \
+ -e spring.datasource.database=canal_manager \
  -e spring.datasource.username=root \
  -e spring.datasource.password=root
 # 注意点：

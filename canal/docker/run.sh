@@ -72,12 +72,12 @@ case "`uname`" in
         ;;
     Linux)
         bin_abs_path=$(readlink -f $(dirname $0))
-        NET_MODE="--net=host"
+        NET_MODE="--net=bridge"
         PORTS=""
         ;;
     *)
         bin_abs_path=`cd $(dirname $0); pwd`
-        NET_MODE="--net=host"
+        NET_MODE="--net=bridge"
         PORTS=""
         ;;
 esac
