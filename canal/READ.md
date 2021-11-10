@@ -11,9 +11,9 @@
 # 远程拉取
 # 访问docker hub获取最新的版本 访问：https://hub.docker.com/r/canal/canal-server/tags/
 
-# 下载对应的版本，比如最新版为1.1.1
+# 下载对应的版本，比如最新版为1.1.5
 
-docker pull canal/canal-server:v1.1.1
+docker pull canal/canal-server:v1.1.5
 # 本地编译
 git clone git@github.com:alibaba/canal.git
 cd canal/docker && sh build.sh
