@@ -1,4 +1,18 @@
 
+mysql -uroot -proot
+# 创建账号
+CREATE USER canal IDENTIFIED BY 'canal';
+# 授予权限
+GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'canal'@'%';
+#-- GRANT ALL PRIVILEGES ON *.* TO 'canal'@'%' ;
+# 刷新并应用
+FLUSH PRIVILEGES;
+
+#查看binlog是否开启
+show variables like 'log_bin';
+#binlog位置
+show master status;
+
 # Dockerfile
 # Dockerfile文件：https://github.com/alibaba/canal/blob/master/docker/Dockerfile 注意点：
 
