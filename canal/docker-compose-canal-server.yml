@@ -6,10 +6,14 @@ services:
     ports:
       - 11111:11111
     environment:
-      - canal.destinations=test
-      - canal.instance.master.address=rm-uf6ygt85a066ec9cg9o.mysql.rds.aliyuncs.com:3306
-      - canal.instance.dbUsername=seres_db_dev_user_01
-      - canal.instance.dbPassword=Serrs#dbsa@2010
+      - canal.instance.mysql.slaveId=12
+      - canal.auto.scan=false
+      - canal.destinations=example
+      - canal.instance.master.address=192.168.33.2:3306
+      - canal.instance.dbUsername=canal
+      - canal.instance.dbPassword=canal
+      - canal.mq.topic=example
       - canal.instance.filter.regex=.*\\..*
     volumes:
-      - ./canal-server/logs/:/home/admin/canal-server/logs/
+      - ./canal-server/conf/:/admin/canal-server/conf/
+      - ./canal-server/logs/:/admin/canal-server/logs/
