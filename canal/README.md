@@ -85,11 +85,13 @@ sh  run_admin.sh -e server.port=8089 \
 -e canal.adminPasswd=admin
 
 # 指定外部的mysql作为admin的库
-# sh  run_admin.sh -e server.port=8089 \
-# -e spring.datasource.address=xxx \
-# -e spring.datasource.database=xx \
-# -e spring.datasource.username=xx
-# -e spring.datasource.password=xx
+sh  run_admin.sh -e server.port=8089 \
+ -e canal.adminUser=zilaike \
+ -e canal.adminPasswd=zilaike \
+ -e spring.datasource.address=192.168.33.2:3306 \
+ -e spring.datasource.database=canal \
+ -e spring.datasource.username=root \
+ -e spring.datasource.password=root
 # 注意点：
 
 # -e参数里可以指定以前application.yml里所有配置的key和value，springboot启动时会读取-e指定的变量
