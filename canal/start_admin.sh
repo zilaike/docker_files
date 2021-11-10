@@ -1,0 +1,1 @@
+docker-compose -f docker-compose-canal-admin.yml  up -d
