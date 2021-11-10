@@ -24,7 +24,6 @@ services:
       --collation-server=utf8mb4_general_ci
       --explicit_defaults_for_timestamp=true
       --lower_case_table_names=1
-      # canal 配置 , ref: https://github.com/alibaba/canal/wiki/QuickStart
       --log-bin=mysql-bin
       --server_id=1000
       --binlog-format=ROW
