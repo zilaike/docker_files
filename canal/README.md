@@ -11,7 +11,7 @@ FLUSH PRIVILEGES;
 #查看binlog是否开启
 show variables like 'log_bin';
 
-#查看mysql binlog的模式，一共有三种（statement,row,mixed），默认statement模式（直接打sql语句）
+#查看mysql binlog的模式，一共有三种（statement,row,mixed），默认statement模式（直接打sql语句），要改成row模式
 show variables like 'binlog_format%';
 
 #binlog位置
