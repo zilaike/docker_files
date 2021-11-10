@@ -9,30 +9,9 @@ services:
       - mysql
     environment:
       - canal.destinations=test
-      - canal.instance.master.address=192.168.33.2:3307
-      - canal.instance.dbUsername=canal
-      - canal.instance.dbPassword=canal
+      - canal.instance.master.address=rm-uf6ygt85a066ec9cg9o.mysql.rds.aliyuncs.com:3306
+      - canal.instance.dbUsername=seres_db_dev_user_01
+      - canal.instance.dbPassword=Serrs#dbsa@2010
       - canal.instance.filter.regex=.*\\..*
     volumes:
       - ./canal-server/logs/:/home/admin/canal-server/logs/
-  mysql:
-    image: mysql:5.7.22
-    container_name: mysql
-    command:
-      --default-authentication-plugin=mysql_native_password
-      --character-set-server=utf8mb4
-      --collation-server=utf8mb4_general_ci
-      --explicit_defaults_for_timestamp=true
-      --lower_case_table_names=1
-      --log-bin=mysql-bin
-      --server_id=1000
-      --binlog-format=ROW
-    volumes:
-      - /data/docker_file/mysql/data/:/var/lib/mysql/
-    restart: always
-    ports:
-      - "3307:3307"
-      - "33060:33060"
-    environment:
-      TZ: Asia/Shanghai
-      MYSQL_ROOT_PASSWORD: root123
