@@ -5,8 +5,6 @@ services:
     container_name: canal-server
     ports:
       - 11111:11111
-    depends_on:
-      - mysql
     environment:
       - canal.destinations=test
       - canal.instance.master.address=rm-uf6ygt85a066ec9cg9o.mysql.rds.aliyuncs.com:3306
