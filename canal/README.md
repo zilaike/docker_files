@@ -51,3 +51,74 @@ sh run.sh -e canal.auto.scan=false \
 # docker模式下，单docker实例只能运行一个instance，主要为配置问题。如果需要运行多instance时，可以自行制作一份docker镜像即可
  
 # 看到successful之后，就代表canal-server启动成功，可以启动canal-client链接上来进行binlog订阅了
+
+
+
+
+#======================================================================================管理端============================================================================
+#远程拉取
+#访问docker hub获取最新的版本 访问：https://hub.docker.com/r/canal/canal-admin/tags/
+
+#下载对应的版本，比如最新版为1.1.5
+
+docker pull canal/canal-admin:v1.1.5
+#本地编译
+sh build.sh admin
+
+
+# docker目录下自带了一个run_admin.sh脚本: https://github.com/alibaba/canal/blob/master/docker/run_admin.sh
+
+# Usage:
+# # run_admin.sh [CONFIG]
+# example :
+# run_admin.sh -e server.port=8089 \
+# -e canal.adminUser=admin \
+# -e canal.adminPasswd=admin
+# 实际运行的例子：
+
+# 下载脚本
+wget https://raw.githubusercontent.com/alibaba/canal/master/docker/run_admin.sh
+
+# 以8089端口启动canal-admin
+sh  run_admin.sh -e server.port=8089 \
+-e canal.adminUser=admin \
+-e canal.adminPasswd=admin
+
+# 指定外部的mysql作为admin的库
+# sh  run_admin.sh -e server.port=8089 \
+# -e spring.datasource.address=xxx \
+# -e spring.datasource.database=xx \
+# -e spring.datasource.username=xx
+# -e spring.datasource.password=xx
+# 注意点：
+
+# -e参数里可以指定以前application.yml里所有配置的key和value，springboot启动时会读取-e指定的变量
+# 运行效果
+
+
+# 看到successful之后，就代表canal-admin启动成功，可以访问 http://127.0.0.1:8089/ ，默认账号密码: admin/123456
+
+# 配套启动Canal-Server Docker
+# 首先请参考：Canal-Server的Docker启动方式 Docker-QuickStart
+
+# 下载脚本
+wget https://raw.githubusercontent.com/alibaba/canal/master/docker/run.sh
+
+# 以单机模式启动
+run.sh -e canal.admin.manager=127.0.0.1:8089 \
+-e canal.admin.port=11110 \
+-e canal.admin.user=admin \
+-e canal.admin.passwd=4ACFE3202A5FF5CF467898FC58AAB1D615029441
+
+# 自动加入test集群
+run.sh -e canal.admin.manager=127.0.0.1:8089 \
+-e canal.admin.port=11110 \
+-e canal.admin.user=admin \
+-e canal.admin.passwd=4ACFE3202A5FF5CF467898FC58AAB1D615029441
+-e canal.admin.register.cluster=test
+# 注意点：
+
+# canal.admin.manager 代表需要链接的canal-admin地址
+# canal.admin.user/passwd/port 请参考canal-admin的配置指导文档
+# canal.admin.register.cluster 表示默认注册的集群
+# 看到successful之后，就代表canal-server启动成功，然后就可以在canal-admin上进行任务分配了
