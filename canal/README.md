@@ -44,7 +44,7 @@ sh run.sh -e canal.auto.scan=false \
 		  -e canal.instance.dbPassword=canal  \
 		  -e canal.instance.connectionCharset=UTF-8 \
 		  -e canal.instance.tsdb.enable=true \
-		  -e canal.instance.gtidon=false  \
+		  -e canal.instance.gtidon=false
 # 注意点：
 
 # -e参数里可以指定以前canal.properties/instance.properties里的所有配置的key和value，canal-server启动时会有限读取-e指定的变量，具体可参考AdminGuide
