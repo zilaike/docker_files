@@ -16,7 +16,7 @@
 docker pull canal/canal-server:v1.1.5
 # 本地编译
 git clone git@github.com:alibaba/canal.git
-cd canal/docker && sh build.sh
+cd docker && sh build.sh
 # 启动Docker
 docker目录下自带了一个run.sh脚本: https://github.com/alibaba/canal/blob/master/docker/run.sh
 
