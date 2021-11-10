@@ -9,7 +9,7 @@ services:
       - mysql
     environment:
       - canal.destinations=test
-      - canal.instance.master.address=192.168.3.201:3306
+      - canal.instance.master.address=192.168.33.2:3307
       - canal.instance.dbUsername=canal
       - canal.instance.dbPassword=canal
       - canal.instance.filter.regex=.*\\..*
@@ -31,7 +31,7 @@ services:
       - /data/docker_file/mysql/data/:/var/lib/mysql/
     restart: always
     ports:
-      - "3306:3306"
+      - "3307:3307"
       - "33060:33060"
     environment:
       TZ: Asia/Shanghai
