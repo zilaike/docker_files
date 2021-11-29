@@ -83,11 +83,12 @@ services:
       - "8848:8848"
   zookeeper:
     image: zookeeper:3.5
+    container_name: zookeeper
     ports:
       - 2181:2181
     volumes:
       - ./mydata/zookeeper/data:/data
-      - ./config/zookeeper/conf:/conf
+#      - ./config/zookeeper/conf:/conf
 
   rocketmq:
     image: rocketmqinc/rocketmq
