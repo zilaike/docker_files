@@ -10,23 +10,23 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - /mydata/mysql/data/db:/var/lib/mysql #数据文件挂载
-      - /mydata/mysql/data/conf:/etc/mysql/conf.d #配置文件挂载
-      - /mydata/mysql/log:/var/log/mysql #日志文件挂载
+      - ./mydata/mysql/data/db:/var/lib/mysql #数据文件挂载
+      - ./mydata/mysql/data/conf:/etc/mysql/conf.d #配置文件挂载
+      - ./mydata/mysql/log:/var/log/mysql #日志文件挂载
   redis:
     image: redis:5.0
     container_name: redis
     command: redis-server --appendonly yes
     volumes:
-      - /mydata/redis/data:/data #数据文件挂载
+      - ./mydata/redis/data:/data #数据文件挂载
     ports:
       - 6379:6379
   rabbitmq:
     image: rabbitmq:3.7.25-management
     container_name: rabbitmq
     volumes:
-      - /mydata/rabbitmq/data:/var/lib/rabbitmq #数据文件挂载
-      - /mydata/rabbitmq/log:/var/log/rabbitmq #日志文件挂载
+      - ./mydata/rabbitmq/data:/var/lib/rabbitmq #数据文件挂载
+      - ./mydata/rabbitmq/log:/var/log/rabbitmq #日志文件挂载
     ports:
       - 5672:5672
       - 15672:15672
@@ -38,8 +38,8 @@ services:
       - "discovery.type=single-node" #以单一节点模式启动
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m" #设置使用jvm内存大小，稍微配置大点，不然有可能启动不成功
     volumes:
-      - /mydata/elasticsearch/plugins:/usr/share/elasticsearch/plugins #插件文件挂载
-      - /mydata/elasticsearch/data:/usr/share/elasticsearch/data #数据文件挂载
+      - ./mydata/elasticsearch/plugins:/usr/share/elasticsearch/plugins #插件文件挂载
+      - ./mydata/elasticsearch/data:/usr/share/elasticsearch/data #数据文件挂载
     ports:
       - 9200:9200
       - 9300:9300
@@ -58,7 +58,7 @@ services:
     image: logstash:6.4.0
     container_name: logstash
     volumes:
-      - /mydata/logstash/logstash-springboot.conf:/usr/share/logstash/pipeline/logstash.conf #挂载logstash的配置文件，docker对单个文件的挂载需要先在宿主机建好对应文件才能挂载成功
+      - ./mydata/logstash/logstash-springboot.conf:/usr/share/logstash/pipeline/logstash.conf #挂载logstash的配置文件，docker对单个文件的挂载需要先在宿主机建好对应文件才能挂载成功
     depends_on:
       - elasticsearch #kibana在elasticsearch启动之后再启动
     links:
@@ -69,7 +69,7 @@ services:
     image: mongo:3.2
     container_name: mongo
     volumes:
-      - /mydata/mongo/db:/data/db #数据文件挂载
+      - ./mydata/mongo/db:/data/db #数据文件挂载
     ports:
       - 27017:27017
   nacos:
@@ -78,7 +78,7 @@ services:
     environment:
       - MODE=standalone
     volumes:
-      - /mydata/nacos/logs/:/home/nacos/logs
+      - ./mydata/nacos/logs/:/home/nacos/logs
     ports:
       - "8848:8848"
   zookeeper:
@@ -86,8 +86,8 @@ services:
     ports:
       - 2181:2181
     volumes:
-      - /mydata/zookeeper/data:/data
-      - /mydata/zookeeper/conf:/conf
+      - ./mydata/zookeeper/data:/data
+      - ./mydata/zookeeper/conf:/conf
 
   rocketmq:
     image: rocketmqinc/rocketmq
@@ -96,8 +96,8 @@ services:
     ports:
       - 9876:9876
     volumes:
-      - /mydata/rocketmq/logs:/home/rocketmq/logs
-      - /mydata/rocketmq/store:/home/rocketmq/store
+      - ./mydata/rocketmq/logs:/home/rocketmq/logs
+      - ./mydata/rocketmq/store:/home/rocketmq/store
     command: sh mqnamesrv
   broker:
     image: rocketmqinc/rocketmq
@@ -108,9 +108,9 @@ services:
       - 10911:10911
       - 10912:10912
     volumes:
-      - /mydata/rocketmq/logs:/home/rocketmq/logs
-      - /mydata/rocketmq/store:/home/rocketmq/store
-      - /mydata/rocketmq/conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf  #这个配置需要先在宿主机对应目录放好broker.conf配置文件,文件内容参考下面文档
+      - ./mydata/rocketmq/logs:/home/rocketmq/logs
+      - ./mydata/rocketmq/store:/home/rocketmq/store
+      - ./config/rocketmq/conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf  #这个配置需要先在宿主机对应目录放好broker.conf配置文件,文件内容参考下面文档
     command: sh mqbroker -n namesrv:9876 -c ../conf/broker.conf
     depends_on:
       - rocketmq
