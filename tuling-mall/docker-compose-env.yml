@@ -4,7 +4,7 @@ services:
     image: mysql:5.7
     container_name: mysql
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci  #覆盖容器启动后默认执行的启动mysql命令
-    restart: always  #关机或者重启机器时，docker同时重启容器，一般mysql服务可以这么设置，保持服务一直都在
+#    restart: always  #关机或者重启机器时，docker同时重启容器，一般mysql服务可以这么设置，保持服务一直都在
     environment:
       MYSQL_ROOT_PASSWORD: root #设置root帐号密码
     ports:
@@ -93,7 +93,7 @@ services:
   rocketmq:
     image: rocketmqinc/rocketmq
     container_name: rocketmq
-    restart: always
+#    restart: always
     ports:
       - 9876:9876
     volumes:
@@ -101,12 +101,11 @@ services:
       - ./mydata/rocketmq/store:/home/rocketmq/store
     command: sh mqnamesrv
     environment:
-      # 指定堆内存大小
-      - "MAX_POSSIBLE_HEAP=256m"
+      - MAX_POSSIBLE_HEAP=128m   # 指定堆内存大小
   broker:
     image: rocketmqinc/rocketmq
     container_name: rmqbroker
-    restart: always
+#    restart: always
     ports:
       - 10909:10909
       - 10911:10911
@@ -120,13 +119,12 @@ services:
       - rocketmq
     environment:
       - JAVA_HOME=/usr/lib/jvm/jre
-      # 指定堆内存大小
-      - "MAX_POSSIBLE_HEAP=256m"
-      - "JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m"
+      - MAX_POSSIBLE_HEAP=128m   # 指定堆内存大小
+      - JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m
   console:
     image: styletang/rocketmq-console-ng
     container_name: rocketmq-console-ng
-    restart: always
+#    restart: always
     ports:
       - 8076:8080
     depends_on:
