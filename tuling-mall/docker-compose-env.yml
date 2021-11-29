@@ -11,7 +11,7 @@ services:
       - 3306:3306
     volumes:
       - ./mydata/mysql/data/db:/var/lib/mysql #数据文件挂载
-      - ./mydata/mysql/data/conf:/etc/mysql/conf.d #配置文件挂载
+      - ./config/mysql/conf:/etc/mysql/conf.d #配置文件挂载
       - ./mydata/mysql/log:/var/log/mysql #日志文件挂载
   redis:
     image: redis:5.0
@@ -38,7 +38,7 @@ services:
       - "discovery.type=single-node" #以单一节点模式启动
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m" #设置使用jvm内存大小，稍微配置大点，不然有可能启动不成功
     volumes:
-      - ./mydata/elasticsearch/plugins:/usr/share/elasticsearch/plugins #插件文件挂载
+      - ./config/elasticsearch/plugins:/usr/share/elasticsearch/plugins #插件文件挂载
       - ./mydata/elasticsearch/data:/usr/share/elasticsearch/data #数据文件挂载
     ports:
       - 9200:9200
@@ -58,7 +58,7 @@ services:
     image: logstash:6.4.0
     container_name: logstash
     volumes:
-      - ./mydata/logstash/logstash-springboot.conf:/usr/share/logstash/pipeline/logstash.conf #挂载logstash的配置文件，docker对单个文件的挂载需要先在宿主机建好对应文件才能挂载成功
+      - ./config/logstash/logstash-springboot.conf:/usr/share/logstash/pipeline/logstash.conf #挂载logstash的配置文件，docker对单个文件的挂载需要先在宿主机建好对应文件才能挂载成功
     depends_on:
       - elasticsearch #kibana在elasticsearch启动之后再启动
     links:
@@ -87,7 +87,7 @@ services:
       - 2181:2181
     volumes:
       - ./mydata/zookeeper/data:/data
-      - ./mydata/zookeeper/conf:/conf
+      - ./config/zookeeper/conf:/conf
 
   rocketmq:
     image: rocketmqinc/rocketmq
