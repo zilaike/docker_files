@@ -101,7 +101,7 @@ services:
       - ./mydata/rocketmq/store:/home/rocketmq/store
     command: sh mqnamesrv
     environment:
-      - MAX_POSSIBLE_HEAP=128m   # 指定堆内存大小
+      - MAX_POSSIBLE_HEAP=256m   # 指定堆内存大小
   broker:
     image: rocketmqinc/rocketmq
     container_name: rmqbroker
@@ -119,8 +119,7 @@ services:
       - rocketmq
     environment:
       - JAVA_HOME=/usr/lib/jvm/jre
-      - MAX_POSSIBLE_HEAP=128m   # 指定堆内存大小
-      - JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m
+      - MAX_POSSIBLE_HEAP=256m  # 指定堆内存大小
   console:
     image: styletang/rocketmq-console-ng
     container_name: rocketmq-console-ng
