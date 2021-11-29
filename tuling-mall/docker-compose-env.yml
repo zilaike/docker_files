@@ -46,7 +46,7 @@ services:
   kibana:
     image: kibana:6.4.0
     container_name: kibana
-    links:  #同一个compose文件管理的服务可以直接用服务名访问，如果要给服务取别名则可以用links实现，如下面的es就是elasticsearch服务的别名
+    links: #同一个compose文件管理的服务可以直接用服务名访问，如果要给服务取别名则可以用links实现，如下面的es就是elasticsearch服务的别名
       - elasticsearch:es #可以用es这个域名访问elasticsearch服务
     depends_on:
       - elasticsearch #kibana在elasticsearch启动之后再启动
