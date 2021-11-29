@@ -21,15 +21,15 @@ services:
       - ./mydata/redis/data:/data #数据文件挂载
     ports:
       - 6379:6379
-  rabbitmq:
-    image: rabbitmq:3.7.25-management
-    container_name: rabbitmq
-    volumes:
-      - ./mydata/rabbitmq/data:/var/lib/rabbitmq #数据文件挂载
-      - ./mydata/rabbitmq/log:/var/log/rabbitmq #日志文件挂载
-    ports:
-      - 5672:5672
-      - 15672:15672
+#  rabbitmq:
+#    image: rabbitmq:3.7.25-management
+#    container_name: rabbitmq
+#    volumes:
+#      - ./mydata/rabbitmq/data:/var/lib/rabbitmq #数据文件挂载
+#      - ./mydata/rabbitmq/log:/var/log/rabbitmq #日志文件挂载
+#    ports:
+#      - 5672:5672
+#      - 15672:15672
   elasticsearch:
     image: elasticsearch:7.14.1
     container_name: elasticsearch
