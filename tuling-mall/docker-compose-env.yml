@@ -100,6 +100,9 @@ services:
       - ./mydata/rocketmq/logs:/home/rocketmq/logs
       - ./mydata/rocketmq/store:/home/rocketmq/store
     command: sh mqnamesrv
+    environment:
+      # 指定堆内存大小
+      - "MAX_POSSIBLE_HEAP=256m"
   broker:
     image: rocketmqinc/rocketmq
     container_name: rmqbroker
@@ -117,6 +120,9 @@ services:
       - rocketmq
     environment:
       - JAVA_HOME=/usr/lib/jvm/jre
+      # 指定堆内存大小
+      - "MAX_POSSIBLE_HEAP=256m"
+      - "JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m"
   console:
     image: styletang/rocketmq-console-ng
     container_name: rocketmq-console-ng
@@ -126,5 +132,5 @@ services:
     depends_on:
       - rocketmq
     environment:
-      - JAVA_OPTS= -Dlogging.level.root=info -Drocketmq.namesrv.addr=rocketmq:9876
+      - JAVA_OPTS= -Dlogging.level.root=info -Drocketmq.namesrv.addr=rocketmq:9876 -server -Xms128m -Xmx128m -Xmn128m
       - Dcom.rocketmq.sendMessageWithVIPChannel=false
