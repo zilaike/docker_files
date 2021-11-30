@@ -3,6 +3,7 @@ skip-host-cache
 skip-name-resolve
 
 #=====================made by zilaike ======================
+#============ World-writable ... Ignored====> chmod 644 /etc/*.cnf
 
 #time format
 explicit_defaults_for_timestamp = false
