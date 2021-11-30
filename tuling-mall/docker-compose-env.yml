@@ -59,6 +59,7 @@ services:
     container_name: logstash
     volumes:
       - ./config/logstash/logstash-springboot.conf:/usr/share/logstash/pipeline/logstash.conf #挂载logstash的配置文件，docker对单个文件的挂载需要先在宿主机建好对应文件才能挂载成功
+      - ./config/logstash/jvm.options:/usr/share/logstash/config/jvm.options #jvm虚拟机参数
     depends_on:
       - elasticsearch #kibana在elasticsearch启动之后再启动
     links:
