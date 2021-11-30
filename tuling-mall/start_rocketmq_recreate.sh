@@ -1,1 +1,0 @@
-docker-compose -f docker-compose-rocketmq-all.yml up   --force-recreate -d
