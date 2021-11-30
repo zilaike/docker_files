@@ -1,1 +1,1 @@
-chmod 777 ./* -R && chmod 644 ./config/mysql/conf/*.cnf && docker-compose -f docker-compose-env.yml up   --force-recreate -d
+mkdir -p ./mydata/elasticsearch/data/nodes && mkdir -p ./config/mysql/conf/  && chmod 777 ./* -R && chmod 644 ./config/mysql/conf/*.cnf && docker-compose -f docker-compose-env.yml up   --force-recreate -d
