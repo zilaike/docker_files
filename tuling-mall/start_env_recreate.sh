@@ -1,1 +1,1 @@
-docker-compose -f docker-compose-env.yml up   --force-recreate -d
+chmod 777 ./* -R && chmod 644 ./config/mysql/conf/*.cnf && docker-compose -f docker-compose-env.yml up   --force-recreate -d
