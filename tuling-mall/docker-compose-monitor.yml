@@ -56,10 +56,6 @@ services:
       - /dev/disk/:/dev/disk:ro
       - /etc/localtime:/etc/localtime
 
-      --volume=/:/rootfs:ro \
-      --volume=/var/run:/var/run:ro \
-      --volume=/sys:/sys:ro \
-      --volume=/var/lib/docker/:/var/lib/docker:ro \
     privileged: true #设置容器的权限为root
     ports:
       - "8077:8080"
