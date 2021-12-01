@@ -53,5 +53,7 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
       - /etc/localtime:/etc/localtime
+
+    privileged: true #设置容器的权限为root
     ports:
       - "8077:8080"
