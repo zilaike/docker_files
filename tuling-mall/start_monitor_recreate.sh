@@ -1,1 +1,1 @@
-docker-compose -f docker-compose-monitor.yml up   --force-recreate -d
+chmod 777 ./mydata/* -R && docker-compose -f docker-compose-monitor.yml up   --force-recreate -d
