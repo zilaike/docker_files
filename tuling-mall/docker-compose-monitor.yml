@@ -43,8 +43,9 @@ services:
       -  /etc/localtime:/etc/localtime
     ports:
       - "9100:9100"
+#google的地址,需要科学上网
   cadvisor:
-    image: google/cadvisor:latest
+    image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
     hostname: cadvisor
     volumes:
