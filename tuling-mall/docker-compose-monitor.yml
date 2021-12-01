@@ -4,7 +4,6 @@ services:
     image: prom/prometheus
     container_name: prometheus
     hostname: prometheus
-    restart: always
     volumes:
 #      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./mydata/prometheus/data:/prometheus
@@ -18,7 +17,6 @@ services:
     image: prom/alertmanager
     container_name: alertmanager
     hostname: alertmanager
-    restart: always
 #    volumes:
 #      - ./config/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
     ports:
@@ -28,7 +26,6 @@ services:
     image: grafana/grafana
     container_name: grafana
     hostname: grafana
-    restart: always
     volumes:
       - ./mydata/grafana/data:/var/lib/grafana
     ports:
