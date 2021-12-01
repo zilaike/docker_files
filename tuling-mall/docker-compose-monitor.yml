@@ -43,7 +43,7 @@ services:
       -  /etc/localtime:/etc/localtime
     ports:
       - "9100:9100"
-
+#收集docker信息
   cadvisor:
     image: google/cadvisor:latest
     container_name: cadvisor
