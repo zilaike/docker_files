@@ -39,7 +39,7 @@ scrape_configs:
   - job_name: 'cadvisor'
     scrape_interval: 5s
     static_configs:
-      - targets: ['47.242.143.77:8087']
+      - targets: ['47.242.143.77:8077']
 
 
 
