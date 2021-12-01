@@ -29,7 +29,9 @@ scrape_configs:
       - targets: ["47.242.143.77:9090"]
 
 
-
+  - job_name: 'grafana'
+    static_configs:
+      - targets: ['47.242.143.77:3000']
 
 
   - job_name: 'linux_server'
