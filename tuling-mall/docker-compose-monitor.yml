@@ -19,7 +19,7 @@ services:
     container_name: alertmanager
     hostname: alertmanager
     restart: always
-    volumes:
+#    volumes:
 #      - ./config/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
     ports:
       - "9093:9093"
