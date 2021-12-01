@@ -12,6 +12,9 @@ services:
       - '--storage.tsdb.path=/prometheus'
     ports:
       - "9090:9090"
+    links:
+      - node-exporter
+      - cadvisor
 
   alertmanager:
     image: prom/alertmanager
