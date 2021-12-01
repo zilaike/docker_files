@@ -6,7 +6,7 @@ services:
     hostname: prometheus
     restart: always
     volumes:
-      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+#      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./mydata/prometheus/data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
@@ -14,15 +14,15 @@ services:
     ports:
       - "9090:9090"
 
-#  alertmanager:
-#    image: prom/alertmanager:v0.22.2
-#    container_name: alertmanager
-#    hostname: alertmanager
-#    restart: always
-#    volumes:
-#      - ./mydata/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
-#    ports:
-#      - "9093:9093"
+  alertmanager:
+    image: prom/alertmanager:v0.22.2
+    container_name: alertmanager
+    hostname: alertmanager
+    restart: always
+    volumes:
+#      - ./config/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    ports:
+      - "9093:9093"
 
   grafana:
     image: grafana/grafana:8.0.6
