@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  prometheus:
+    image: prom/prometheus:v2.28.1
+    container_name: prometheus
+    hostname: prometheus
+    restart: always
+    volumes:
+      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./mydata/prometheus/data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    ports:
+      - "9090:9090"
+
+#  alertmanager:
+#    image: prom/alertmanager:v0.22.2
+#    container_name: alertmanager
+#    hostname: alertmanager
+#    restart: always
+#    volumes:
+#      - ./mydata/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+#    ports:
+#      - "9093:9093"
+
+  grafana:
+    image: grafana/grafana:8.0.6
+    container_name: grafana
+    hostname: grafana
+    restart: always
+    volumes:
+      - ./mydata/grafana/data:/var/lib/grafana
+    ports:
+      - "3000:3000"
