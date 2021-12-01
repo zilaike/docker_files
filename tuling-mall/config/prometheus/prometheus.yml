@@ -47,7 +47,7 @@ scrape_configs:
       static_configs:
         - targets: ['47.242.143.77:9104']
             labels:
-              instance: mysql_bj_8.141.149.177
+              instance: mysql_bj_177
 
 
 
