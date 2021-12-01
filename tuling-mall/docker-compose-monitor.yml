@@ -60,3 +60,12 @@ services:
     privileged: true #设置容器的权限为root
     ports:
       - "8077:8080"
+
+  mysql-exporter:
+    image: prom/mysqld-exporter
+    container_name: mysql-exporter
+    hostname: mysql-exporter
+    environment:
+      DATA_SOURCE_NAME: "root:root@(8.141.149.177:3306)/"
+    ports:
+      - "9104:9104"
