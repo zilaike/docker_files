@@ -42,7 +42,7 @@ services:
       retries: 3
       start_period: 40s
   skywalking-ui:
-    image: apache/skywalking-ui
+    image: apache/skywalking-ui:8.8.1
     container_name: skywalking-ui
     depends_on:
       - skywalking-oap-server
