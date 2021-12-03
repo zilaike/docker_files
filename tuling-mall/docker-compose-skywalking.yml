@@ -31,7 +31,7 @@ services:
       - 1234:1234
     environment:
       SW_STORAGE: elasticsearch7
-      SW_STORAGE_ES_CLUSTER_NODES: 47.242.143.77:9200
+      SW_STORAGE_ES_CLUSTER_NODES: 8.141.149.177:9200
       SW_HEALTH_CHECKER: default
       SW_TELEMETRY: prometheus
       TZ: Asia/Shanghai
