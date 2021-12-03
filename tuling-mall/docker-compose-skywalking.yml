@@ -18,9 +18,9 @@ services:
 
 #可以采用H2数据库存储,不用ES也行
 
-  skywalking-oap-server:
+  oap:
     image: apache/skywalking-oap-server:8.7.0-es7
-    container_name: skywalking-oap-server
+    container_name: oap
 #    depends_on:
 #      - elasticsearch
 #    links:
@@ -45,11 +45,11 @@ services:
     image: apache/skywalking-ui:8.7.0
     container_name: skywalking-ui
     depends_on:
-      - skywalking-oap-server
+      - oap
     links:
-      - skywalking-oap-server
+      - oap
     ports:
       - 8078:8080
     environment:
-      SW_OAP_ADDRESS: skywalking-oap-server:12800
+      SW_OAP_ADDRESS: http://oap:12800
       TZ: Asia/Shanghai
