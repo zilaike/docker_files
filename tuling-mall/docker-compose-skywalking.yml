@@ -19,7 +19,7 @@ services:
 #可以采用H2数据库存储,不用ES也行
 
   skywalking-oap-server:
-    image: apache/skywalking-oap-server:8.8.1
+    image: apache/skywalking-oap-server:8.7.0-es7
     container_name: skywalking-oap-server
 #    depends_on:
 #      - elasticsearch
