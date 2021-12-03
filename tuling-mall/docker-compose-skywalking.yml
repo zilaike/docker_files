@@ -49,7 +49,7 @@ services:
     links:
       - skywalking-oap-server
     ports:
-      - 8080:8080
+      - 8078:8080
     environment:
       SW_OAP_ADDRESS: skywalking-oap-server:12800
       TZ: Asia/Shanghai
