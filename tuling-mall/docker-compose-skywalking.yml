@@ -1,55 +1,58 @@
 version: '3.8'
 services:
 #  elasticsearch:
-#    image: elasticsearch:6.8.2
+#    image: docker.elastic.co/elasticsearch/elasticsearch-oss:${ES_VERSION}
 #    container_name: elasticsearch
-#    restart: always
 #    ports:
-#      - 9200:9200
-#      - 9300:9300
+#      - "9200:9200"
+#    healthcheck:
+#      test: [ "CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1" ]
+#      interval: 30s
+#      timeout: 10s
+#      retries: 3
+#      start_period: 10s
 #    environment:
-#      discovery.type: single-node
-#      TZ: Asia/Shanghai
+#      - discovery.type=single-node
+#      - bootstrap.memory_lock=true
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
 #    ulimits:
 #      memlock:
 #        soft: -1
 #        hard: -1
 
-
-#可以采用H2数据库存储,不用ES也行
-
   oap:
     image: apache/skywalking-oap-server:8.7.0-es7
     container_name: oap
 #    depends_on:
-#      - elasticsearch
+#      elasticsearch:
+#        condition: service_healthy
 #    links:
 #      - elasticsearch
     ports:
-      - 11800:11800
-      - 12800:12800
-      - 1234:1234
-    environment:
-      SW_STORAGE: elasticsearch7
-      SW_STORAGE_ES_CLUSTER_NODES: 8.141.149.177:9200
-      SW_HEALTH_CHECKER: default
-      SW_TELEMETRY: prometheus
-      TZ: Asia/Shanghai
+      - "11800:11800"
+      - "12800:12800"
     healthcheck:
       test: ["CMD", "./bin/swctl", "ch"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 40s
-  skywalking-ui:
-    image: apache/skywalking-ui:8.7.0
-    container_name: skywalking-ui
-    depends_on:
-      - oap
-#    links:
-#      - oap
-    ports:
-      - 8078:8080
+      start_period: 10s
     environment:
-      SW_OAP_ADDRESS: 8.141.149.177:12800
-      TZ: Asia/Shanghai
+      SW_STORAGE: elasticsearch7
+      SW_STORAGE_ES_CLUSTER_NODES: 8.141.149.177:9200
+      SW_HEALTH_CHECKER: default
+      SW_TELEMETRY: prometheus
+      JAVA_OPTS: "-Xms2048m -Xmx2048m"
+
+  ui:
+    image: apache/skywalking-ui:latest
+    container_name: ui
+    depends_on:
+      oap:
+        condition: service_healthy
+    links:
+      - oap
+    ports:
+      - "8078:8080"
+    environment:
+      SW_OAP_ADDRESS: http://oap:12800
