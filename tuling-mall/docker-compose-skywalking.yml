@@ -42,7 +42,9 @@ services:
       SW_STORAGE_ES_CLUSTER_NODES: 8.141.149.177:9200
       SW_HEALTH_CHECKER: default
       SW_TELEMETRY: prometheus
-      JAVA_OPTS: "-Xms2048m -Xmx2048m"
+#      JAVA_OPTS: "-Xms2048m -Xmx2048m"
+    networks:
+      - skywalking-network
 
   ui:
     image: apache/skywalking-ui:latest
@@ -56,3 +58,9 @@ services:
       - "8078:8080"
     environment:
       SW_OAP_ADDRESS: http://oap:12800
+    networks:
+      - skywalking-network
+
+networks:
+  skywalking-network:
+    driver: bridge
