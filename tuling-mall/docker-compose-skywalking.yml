@@ -38,7 +38,7 @@ services:
       retries: 3
       start_period: 10s
     environment:
-      SW_STORAGE: elasticsearch7
+      SW_STORAGE: elasticsearch
       SW_STORAGE_ES_CLUSTER_NODES: 8.141.149.177:9200
       SW_HEALTH_CHECKER: default
       SW_TELEMETRY: prometheus
