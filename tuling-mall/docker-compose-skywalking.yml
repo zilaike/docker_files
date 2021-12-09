@@ -43,6 +43,7 @@ services:
       SW_HEALTH_CHECKER: default
       SW_TELEMETRY: prometheus
       JAVA_OPTS: "-Xms256m -Xmx256m"
+      TZ: Asia/Shanghai
     networks:
       - skywalking-network
 
