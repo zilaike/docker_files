@@ -25,6 +25,7 @@ services:
 
   graylog:
     image: graylog/graylog:4.2.3
+    container_name: graylog
     environment:
       # CHANGE ME !
       - GRAYLOG_PASSWORD_SECRET=admin
