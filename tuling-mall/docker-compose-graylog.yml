@@ -39,7 +39,7 @@ services:
       - "GRAYLOG_SERVER_JAVA_OPTS=-Xms256m -Xmx256m"
     entrypoint: /usr/bin/tini  --  /docker-entrypoint.sh
     volumes:
-      - ./config/graylog/graylog.conf:/usr/share/graylog/data/config/graylog.conf #配置文件挂载
+      - ./config/graylog/graylog.conf:/usr/share/graylog/data/config/graylog.conf  #配置文件挂载
     networks:
       - graylog
 #    restart: always
