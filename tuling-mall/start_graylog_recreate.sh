@@ -1,0 +1,1 @@
+docker-compose -f docker-compose-graylog.yml up   --force-recreate -d
