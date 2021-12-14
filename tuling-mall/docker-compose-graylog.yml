@@ -36,7 +36,7 @@ services:
       - GRAYLOG_ROOT_PASSWORD_SHA2=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
       - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:9000/
       - GRAYLOG_ROOT_TIMEZONE=Asia/Shanghai
-      - "GRAYLOG_SERVER_JAVA_OPTS=-Xms256m -Xmx256m"
+      - "GRAYLOG_SERVER_JAVA_OPTS=-Xms64m -Xmx256m"
     entrypoint: /usr/bin/tini  --  /docker-entrypoint.sh
     volumes:
       - ./config/graylog/graylog.conf:/usr/share/graylog/data/config/graylog.conf  #配置文件挂载
