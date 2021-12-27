@@ -1,15 +1,15 @@
 FROM postgres:14.1
 
-RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates wget \
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates  git \
     && apt-get install -y tar make gcc
-RUN apt-get install -y postgresql-server-dev-$PG_MAJOR
+RUN apt-get install -y postgresql-server-dev-all &&  apt-get install -y  postgresql-common
 RUN mkdir build \
     && cd build \
     && git clone  https://github.com/hightman/scws.git  \
     && git clone  https://github.com/amutu/zhparser.git \
     && cd scws ; ./configure ; make install ; cd .. \
-    && rm -rf scws
+#    && rm -rf scws
 RUN cd zhparser ; SCWS_HOME=/usr/local make && make install ; cd .. \
-    && rm -rf zhparser
-RUN apt-get purge -y --auto-remove ca-certificates wget postgresql-server-dev-$PG_MAJOR make gcc
+#    && rm -rf zhparser
+RUN apt-get purge -y --auto-remove ca-certificates git postgresql-server-dev-$PG_MAJOR make gcc
 ADD init.sql /docker-entrypoint-initdb.d/
