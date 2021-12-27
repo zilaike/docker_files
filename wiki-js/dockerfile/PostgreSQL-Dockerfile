@@ -6,11 +6,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
 RUN apt-get install -y postgresql-server-dev-$PG_MAJOR
 RUN mkdir build \
     && cd build \
-    && curl -Ls   https://github.com/hightman/scws.git > scws.tar.gz  \
-    && wget -q -O - https://github.com/amutu/zhparser/archive/master.tar.gz | tar xzf - \
+    && git clone  https://github.com/hightman/scws.git  \
+    && git clone  https://github.com/amutu/zhparser.git \
     && cd scws ; ./configure ; make install ; cd .. \
     && rm -rf scws
-RUN cd zhparser-master ; SCWS_HOME=/usr/local make && make install ; cd .. \
-    && rm -rf zhparser-master
+RUN cd zhparser ; SCWS_HOME=/usr/local make && make install ; cd .. \
+    && rm -rf zhparser
 RUN apt-get purge -y --auto-remove ca-certificates wget postgresql-server-dev-$PG_MAJOR make gcc
 ADD init.sql /docker-entrypoint-initdb.d/
