@@ -1,6 +1,6 @@
 FROM postgres:14.1
 ENV SCWS_VERSION 1.2.3
-RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates wget git  bzip2 \
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates wget    bzip2 \
     && apt-get install -y tar make gcc
 RUN apt-get install -y postgresql-server-dev-all &&  apt-get install -y  postgresql-common
 RUN mkdir build \
@@ -11,5 +11,5 @@ RUN mkdir build \
     && rm -rf scws-$SCWS_VERSION
 RUN cd zhparser-master ; SCWS_HOME=/usr/local make && make install ; cd .. \
     && rm -rf zhparser-master
-RUN apt-get purge -y --auto-remove ca-certificates wget git bzip2   make gcc
+RUN apt-get purge -y --auto-remove ca-certificates wget   bzip2   make gcc
 ADD init.sql /docker-entrypoint-initdb.d/
