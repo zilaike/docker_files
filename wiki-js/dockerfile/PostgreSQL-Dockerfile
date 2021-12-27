@@ -1,5 +1,4 @@
 FROM postgres:latest
-https://github.com/hightman/xunsearch/archive/refs/tags/1.4.15.tar.gz
 
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates wget \
     && apt-get install -y tar make gcc
