@@ -7,8 +7,8 @@ RUN mkdir build \
     && cd build \
     && git clone  https://github.com/hightman/xunsearch.git  \
     && git clone  https://github.com/amutu/zhparser.git \
-    && cd scws ; ./configure ; make install ; cd .. \
-#    && rm -rf scws
+    && cd xunsearch ; ./configure ; make install ; cd .. \
+#    && rm -rf xunsearch
 RUN cd zhparser ; SCWS_HOME=/usr/local make && make install ; cd .. \
 #    && rm -rf zhparser
 RUN apt-get purge -y --auto-remove ca-certificates git postgresql-server-dev-$PG_MAJOR make gcc
