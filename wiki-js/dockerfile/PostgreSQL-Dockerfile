@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
 RUN apt-get install -y postgresql-server-dev-$PG_MAJOR
 RUN mkdir build \
     && cd build \
-    && wget -q -O - https://github.com/hightman/xunsearch/archive/refs/tags/scws-${SCWS_VERSION}.tar.gz | tar xzf -  \
+    && wget -q -O - 'https://github.com/hightman/xunsearch/archive/refs/tags/scws-${SCWS_VERSION}.tar.gz' | tar xzf -  \
     && wget -q -O - https://github.com/amutu/zhparser/archive/master.tar.gz | tar xzf - \
     && cd scws-$SCWS_VERSION ; ./configure ; make install ; cd .. \
     && rm -rf scws-$SCWS_VERSION
