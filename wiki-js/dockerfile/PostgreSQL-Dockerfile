@@ -2,7 +2,7 @@ FROM postgres:14.1
 ENV SCWS_VERSION 1.2.3
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates wget    bzip2 \
     && apt-get install -y tar make gcc \
-    && apt-get postgresql-server-dev-14 \
+    && apt-get install postgresql-server-dev-14 \
     &&  mkdir build \
     && cd build \
     &&  wget -q -O - http://www.xunsearch.com/scws/down/scws-$SCWS_VERSION.tar.bz2 | tar xjf -  \
