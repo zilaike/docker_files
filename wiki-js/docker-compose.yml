@@ -2,7 +2,10 @@ version: "3"
 services:
 
   db:
-    image: postgres:11-alpine
+    build:
+      context: ./dockerfile
+      dockerfile: PostgreSQL-Dockerfile
+    image: zilaike/postgresql-zhparser
     container_name: postgres
     environment:
       POSTGRES_DB: wiki

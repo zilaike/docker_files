@@ -1,5 +1,5 @@
 #
-# Dockerfile for ipsec
+# PostgreSQL-Dockerfile for ipsec
 #
 
 FROM alpine
