@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
 RUN apt-get install -y postgresql-server-dev-all &&  apt-get install -y  postgresql-common
 RUN mkdir build \
     && cd build \
-    && git clone  https://github.com/hightman/scws.git  \
+    && git clone  https://github.com/hightman/xunsearch.git  \
     && git clone  https://github.com/amutu/zhparser.git \
     && cd scws ; ./configure ; make install ; cd .. \
 #    && rm -rf scws
