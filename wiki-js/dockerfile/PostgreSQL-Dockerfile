@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
     &&  wget -q -O - https://github.com/amutu/zhparser/archive/master.tar.gz | tar xzf - \
     && cd scws-$SCWS_VERSION && ./configure && make install \
     && rm -rf scws-$SCWS_VERSION \
-    && cd zhparser-master && SCWS_HOME=/usr/local make && make install && cd .. \
+    && cd  /build/zhparser-master && SCWS_HOME=/usr/local make && make install && cd .. \
     && rm -rf zhparser-master \
     && apt-get purge -y --auto-remove ca-certificates wget   bzip2   make gcc
 ADD init.sql /docker-entrypoint-initdb.d/
