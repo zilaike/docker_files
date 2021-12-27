@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
 RUN apt-get install -y postgresql-server-dev-all &&  apt-get install -y  postgresql-common
 RUN mkdir build \
     && cd build \
-    &&  wget -q -O - http://www.xunsearch.com/scws/down/scws-$SCWS_VERSION.tar.bz2 | tar xf -  \
+    &&  wget -q -O - http://www.xunsearch.com/scws/down/scws-$SCWS_VERSION.tar.bz2 | tar xjf -  \
     && git clone  https://github.com/amutu/zhparser.git \
     && cd scws-$SCWS_VERSION ; ./configure ; make install \
     && rm -rf scws-$SCWS_VERSION
