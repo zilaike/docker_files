@@ -11,5 +11,5 @@ RUN mkdir build \
     && rm -rf scws-$SCWS_VERSION
 RUN cd zhparser ; SCWS_HOME=/usr/local make && make install ; cd .. \
     && rm -rf zhparser
-RUN apt-get purge -y --auto-remove ca-certificates wget git bzip2 postgresql-server-dev-all postgresql-common  make gcc
+RUN apt-get purge -y --auto-remove ca-certificates wget git bzip2   make gcc
 ADD init.sql /docker-entrypoint-initdb.d/
