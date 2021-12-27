@@ -1,15 +1,15 @@
 FROM postgres:latest
 https://github.com/hightman/xunsearch/archive/refs/tags/1.4.15.tar.gz
-ENV SCWS_VERSION latest
+
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates wget \
     && apt-get install -y tar make gcc
 RUN apt-get install -y postgresql-server-dev-$PG_MAJOR
 RUN mkdir build \
     && cd build \
-    && curl -Ls   https://github.com/hightman/scws.git > scws-$SCWS_VERSION.tar.gz  \
+    && curl -Ls   https://github.com/hightman/scws.git > scws.tar.gz  \
     && wget -q -O - https://github.com/amutu/zhparser/archive/master.tar.gz | tar xzf - \
-    && cd scws-$SCWS_VERSION ; ./configure ; make install ; cd .. \
-    && rm -rf scws-$SCWS_VERSION
+    && cd scws ; ./configure ; make install ; cd .. \
+    && rm -rf scws
 RUN cd zhparser-master ; SCWS_HOME=/usr/local make && make install ; cd .. \
     && rm -rf zhparser-master
 RUN apt-get purge -y --auto-remove ca-certificates wget postgresql-server-dev-$PG_MAJOR make gcc
