@@ -31,6 +31,9 @@ services:
       DB_USER: wikijs
       DB_PASS: wikijsrocks
       DB_NAME: wiki
+    volumes:
+      - ./config/postgresql/definition.yml:/wiki/server/modules/search/postgres/definition.yml
+
     ports:
       - "80:3000"
 
