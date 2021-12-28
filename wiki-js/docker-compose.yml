@@ -15,6 +15,9 @@ services:
 #      driver: "none"
     volumes:
       - ./mydata/postgresql/data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
 
   wiki:
     image: requarks/wiki:2
